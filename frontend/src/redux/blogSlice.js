@@ -6,7 +6,7 @@ export const fetchBlogs = createAsyncThunk(
   "blogs/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const res = await axiosInstance.get("/api/posts");
+      const res = await axiosInstance.get(`https://blogblaze.onrender.com/api/posts`);
       return res.data.blogs || res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -20,7 +20,7 @@ export const getUserBlogs = createAsyncThunk(
   "blogs/getUserBlogs",
   async (_, thunkAPI) => {
     try {
-      const response = await axiosInstance.get("/api/posts/user");
+      const response = await axios.get(`https://blogblaze.onrender.com/api/posts/user`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -35,7 +35,7 @@ export const fetchBlogById = createAsyncThunk(
   "blogs/fetchById",
   async (id, thunkAPI) => {
     try {
-      const res = await axiosInstance.get(`/api/posts/${id}`);
+      const res = await axiosInstance.get(`https://blogblaze.onrender.com/api/posts/${id}`);
       return res.data.blog || res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -60,7 +60,7 @@ export const createBlog = createAsyncThunk(
         },
       };
 
-      const res = await axiosInstance.post("/api/posts", blogData, config);
+      const res = await axiosInstance.post(`https://blogblaze.onrender.com/api/posts`, blogData, config);
       return res.data.blog || res.data;
     } catch (error) {
       console.log("API error:", error.response?.data || error.message);
@@ -79,7 +79,7 @@ export const fetchFeaturedPosts = createAsyncThunk(
   "blogs/fetchFeaturedPosts",
   async (_, thunkAPI) => {
     try {
-      const response = await axiosInstance.get("/api/posts/featured");
+      const response = await axiosInstance.get(`https://blogblaze.onrender.com/api/posts/featured`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -94,7 +94,7 @@ export const fetchRecentPosts = createAsyncThunk(
   "blogs/fetchRecentPosts",
   async (_, thunkAPI) => {
     try {
-      const response = await axiosInstance.get("/api/posts/recent");
+      const response = await axiosInstance.get(`https://blogblaze.onrender.com/api/posts/recent`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -109,7 +109,7 @@ export const deleteBlog = createAsyncThunk(
   "blogs/delete",
   async (postId, thunkAPI) => {
     try {
-      await axiosInstance.delete(`api/posts/${postId}`);
+      await axiosInstance.delete(`/api/posts/${postId}`);
       return postId;
     } catch (error) {
       return thunkAPI.rejectWithValue(
@@ -123,7 +123,7 @@ export const subscribeToNewsletter = createAsyncThunk(
   "blogs/subscribeToNewsletter",
   async (email, thunkAPI) => {
     try {
-      const response = await axiosInstance.post("/api/newsletter/subscribe", {
+      const response = await axiosInstance.post(`https://blogblaze.onrender.com/api/newsletter/subscribe`, {
         email,
       });
       return response.data;

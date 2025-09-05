@@ -47,7 +47,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", userData);
+      const response = await axios.post("https://blogblaze.onrender.com/api/auth/login", userData);
       localStorage.setItem('authToken', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       return response.data.user;
@@ -62,7 +62,7 @@ export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (userData, { rejectWithValue }) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/register", userData);
+      const response = await axios.post("https://blogblaze.onrender.com/api/auth/register", userData);
       return response.data.message || "Registration successful!";
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || "Registration failed");
